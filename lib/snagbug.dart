@@ -3,6 +3,7 @@ import 'dart:isolate';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:snagbug/encoding.dart';
 import 'package:stack_trace/stack_trace.dart';
 
 enum EveryErrorSource {
@@ -21,21 +22,18 @@ class Snagbug {
 
   static Future<void> handleError(Object error, StackTrace stackTrace,
       {EveryErrorSource source}) {
-    Trace.from(stackTrace);
-
-    return _channel.invokeMethod<Map>('send_error', <String, dynamic>{
-      'source': (source ?? EveryErrorSource.Unknown).toString(),
-      'error': error.toString(),
-      'stack': stackTrace.toString(),
-    });
+    return _channel.invokeMethod<Map>(
+      'send_error',
+      encodeEvent(error, stackTrace),
+    );
   }
 
   static void handleEveryError(Function main,
       {EveryErrorHandler onError = handleError}) {
-    runZonedGuarded<Future<void>>(() async {
-      _wireUpFlutterErrorHandler(onError);
-      _wireUpIsolateErrorHandler(onError);
+    _wireUpFlutterErrorHandler(onError);
+    _wireUpIsolateErrorHandler(onError);
 
+    runZonedGuarded<Future<void>>(() async {
       main();
     }, _generateZoneGuard(onError));
   }

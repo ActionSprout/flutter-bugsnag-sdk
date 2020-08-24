@@ -50,21 +50,26 @@ public class SwiftSnagbugPlugin: NSObject, FlutterPlugin {
     }
 
     private func sendError(_ args: [String: Any?], _ result: @escaping FlutterResult) {
-        guard let error = args["error"] as? String, let stack = args["stack"] as? String, let source = args["source"] as? String else {
+        guard let errorClass = args["type"] as? String, let errorMessage = args["message"] as? String, let frames = args["stack"] as? [[String: String]] else {
             result(FlutterError(
                 code: "INVALID_ARG",
-                message: "Method 'send_error' requires three String parameters: error, stack, source",
+                message: "Method 'send_error' received invalid arguments.",
                 details: nil
             ))
             return
         }
 
-        Bugsnag.notify(createCanaryError()) { (event) in
-        event.errors[0].errorClass = "class"
-        event.errors[0].errorMessage = "message"
-            event.errors[0].stacktrace = []
-            
-        return true
+        Bugsnag.notify(createCanaryError()) { event in
+            event.errors[0].errorClass = errorClass
+            event.errors[0].errorMessage = errorMessage
+            event.errors[0].stacktrace = frames.map { (frame) -> BugsnagStackframe in
+                let translated = BugsnagStackframe()
+                translated.machoFile = frame["file"]
+                translated.method = frame["member"]
+                return translated
+            }
+
+            return true
         }
         result(nil)
     }

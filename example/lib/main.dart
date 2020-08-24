@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Snagbug Example'),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
