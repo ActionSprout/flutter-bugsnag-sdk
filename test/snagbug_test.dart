@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:bugsnag/bugsnag.dart';
+import 'package:snagbug/snagbug.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('bugsnag');
+  const MethodChannel channel = MethodChannel('snagbug');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await Bugsnag.platformVersion, '42');
+    expect(await Snagbug.platformVersion, '42');
   });
 }

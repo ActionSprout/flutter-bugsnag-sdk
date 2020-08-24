@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bugsnag.iml" filepath="$PROJECT_DIR$/bugsnag.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/bugsnag_android.iml" filepath="$PROJECT_DIR$/android/bugsnag_android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/example/android/bugsnag_example_android.iml" filepath="$PROJECT_DIR$/example/android/bugsnag_example_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snagbug.iml" filepath="$PROJECT_DIR$/snagbug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/snagbug_android.iml" filepath="$PROJECT_DIR$/android/snagbug_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/snagbug_example_android.iml" filepath="$PROJECT_DIR$/example/android/snagbug_example_android.iml" />
     </modules>
   </component>
 </project>

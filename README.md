@@ -1,14 +1,26 @@
-# bugsnag
+# snagbug
 
 Flutter integration to first-party Bugsnag SDKs.
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+To install, add the following to the `dependencies` section of your `pubspec.yaml` file:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```
+snagbug: ^1.0.0
+```
+
+Then, ensure Flutter has installed it with `flutter pub get`.
+
+## Configuration
+
+Follow the Bugsnag documentation for each mobile platform supported:
+
+- [iOS](https://docs.bugsnag.com/platforms/ios/#basic-configuration)
+- [Android](https://docs.bugsnag.com/platforms/android/#basic-configuration)
+
+## What's with the name?
+
+Turns out, the Flutter tooling prevents a package from sharing a name with the underlying Cocoapod. Seriously.
+
+Snagbug seemed like the least bad option.

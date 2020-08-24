@@ -1,4 +1,4 @@
-group 'com.actionsprout.bugsnag'
+group 'com.actionsprout.snagbug'
 version '1.0-SNAPSHOT'
 
 buildscript {

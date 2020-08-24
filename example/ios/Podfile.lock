@@ -1,0 +1,29 @@
+PODS:
+  - Bugsnag (6.1.3)
+  - Flutter (1.0.0)
+  - snagbug (0.0.1):
+    - Bugsnag
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - snagbug (from `.symlinks/plugins/snagbug/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Bugsnag
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  snagbug:
+    :path: ".symlinks/plugins/snagbug/ios"
+
+SPEC CHECKSUMS:
+  Bugsnag: 62dc800fefb846ec607b8434183311d501204465
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  snagbug: ed6d40d44850fdcb1ba66264b8b89f7c2d39c6ea
+
+PODFILE CHECKSUM: 1b6ee86492ea29f1088b42a947f583cfc1a26c2e
+
+COCOAPODS: 1.9.3

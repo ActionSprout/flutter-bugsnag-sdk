@@ -1,6 +1,6 @@
-# bugsnag_example
+# snagbug_example
 
-Demonstrates how to use the bugsnag plugin.
+Demonstrates how to use the snagbug plugin.
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-name: bugsnag
+name: snagbug
 description: Flutter integration to first-party Bugsnag SDKs.
 version: 0.0.1
 author:
@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  stack_trace: ^1.9.5
 
 dev_dependencies:
   flutter_test:
@@ -28,10 +29,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.actionsprout.bugsnag
-        pluginClass: BugsnagPlugin
+        package: com.actionsprout.snagbug
+        pluginClass: SnagbugPlugin
       ios:
-        pluginClass: BugsnagPlugin
+        pluginClass: SnagbugPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
