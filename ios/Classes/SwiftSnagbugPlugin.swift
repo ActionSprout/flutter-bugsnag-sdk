@@ -50,7 +50,7 @@ public class SwiftSnagbugPlugin: NSObject, FlutterPlugin {
     }
 
     private func sendError(_ args: [String: Any?], _ result: @escaping FlutterResult) {
-        guard let errorClass = args["type"] as? String, let errorMessage = args["message"] as? String, let frames = args["stack"] as? [[String: String]] else {
+        guard let errorClass = args["type"] as? String, let errorMessage = args["message"] as? String, let frames = args["stack"] as? [[String: Any]] else {
             result(FlutterError(
                 code: "INVALID_ARG",
                 message: "Method 'send_error' received invalid arguments.",
@@ -64,8 +64,8 @@ public class SwiftSnagbugPlugin: NSObject, FlutterPlugin {
             event.errors[0].errorMessage = errorMessage
             event.errors[0].stacktrace = frames.map { (frame) -> BugsnagStackframe in
                 let translated = BugsnagStackframe()
-                translated.machoFile = frame["file"]
-                translated.method = frame["member"]
+                translated.machoFile = frame["file"] as! String
+                translated.method = frame["member"] as! String
                 return translated
             }
 
