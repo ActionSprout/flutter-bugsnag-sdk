@@ -18,7 +18,7 @@ public class SnagbugPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "snagbug")
+    channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "actionsprout.com/snagbug")
     channel.setMethodCallHandler(this);
   }
 
@@ -34,20 +34,39 @@ public class SnagbugPlugin: FlutterPlugin, MethodCallHandler {
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "snagbug")
+      val channel = MethodChannel(registrar.messenger(), "actionsprout.com/snagbug")
       channel.setMethodCallHandler(SnagbugPlugin())
     }
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else {
-      result.notImplemented()
+    if (call.arguments !is HashMap<*, *>) {
+        result.error("INVALID_ARGS", "Arguments must be a Map<String, dynamic>", null)
+        return
+    }
+
+    val args = call.arguments as HashMap<String, Any>
+
+    when {
+        call.method == "send_error" -> sendError(args, result)
+        else -> result.notImplemented()
     }
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
+  }
+
+  fun sendError(@NonNull args: HashMap<String, Any>, @NonNull result: Result) {
+    if (args["type"] !is String || args["message"] !is String || args["stack"] !is ArrayList<*>) {
+      result.error(
+          "INVALID_ARG",
+          "Method 'send_error' received invalid arguments.",
+          null
+      )
+      return
+    }
+
+    result.success(null)
   }
 }
