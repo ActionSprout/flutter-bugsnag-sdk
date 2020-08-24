@@ -8,9 +8,11 @@ Map encodeEvent(Object error, StackTrace stackTrace) {
   };
 }
 
-List<Map<String, String>> _encodeStack(Trace trace) => trace.frames
-    .map((frame) => <String, String>{
+List<Map<String, dynamic>> _encodeStack(Trace trace) => trace.frames
+    .map((frame) => <String, dynamic>{
           'file': frame.library,
+          'line': frame.line,
           'member': frame.member,
+          'package': frame.package,
         })
     .toList();
