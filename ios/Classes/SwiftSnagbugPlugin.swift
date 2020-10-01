@@ -64,8 +64,8 @@ public class SwiftSnagbugPlugin: NSObject, FlutterPlugin {
             event.errors[0].errorMessage = errorMessage
             event.errors[0].stacktrace = frames.map { (frame) -> BugsnagStackframe in
                 let translated = BugsnagStackframe()
-                translated.machoFile = frame["file"] as! String
-                translated.method = frame["member"] as! String
+                translated.machoFile = frame["file"] as? String
+                translated.method = frame["member"] as? String
                 return translated
             }
 
