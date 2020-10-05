@@ -33,6 +33,11 @@ class Snagbug {
       main();
     }, _generateZoneGuard(onError));
 
+    // These come _after_ `main` to attempt to ensure compatibility issues do
+    // not interfere with the main application. With Flutter 1.22, we found an
+    // issue with running `MaterialApp` within `Provider` with this `Isolate`
+    // error handler coming first, on Android release builds, but dropping it
+    // here solved the problem. No other errors, warnings, or diagnosed causes.
     _wireUpFlutterErrorHandler(onError);
     _wireUpIsolateErrorHandler(onError);
   }
