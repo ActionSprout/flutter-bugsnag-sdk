@@ -29,12 +29,12 @@ class Snagbug {
 
   static void handleEveryError(Function main,
       {EveryErrorHandler onError = handleError}) {
-    _wireUpFlutterErrorHandler(onError);
-    _wireUpIsolateErrorHandler(onError);
-
     runZonedGuarded<Future<void>>(() async {
       main();
     }, _generateZoneGuard(onError));
+
+    _wireUpFlutterErrorHandler(onError);
+    _wireUpIsolateErrorHandler(onError);
   }
 
   static void _wireUpFlutterErrorHandler(EveryErrorHandler handler) {
