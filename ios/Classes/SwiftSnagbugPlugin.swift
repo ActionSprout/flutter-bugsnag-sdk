@@ -39,7 +39,7 @@ public class SwiftSnagbugPlugin: NSObject, FlutterPlugin {
 
     public func application(_: UIApplication, open _: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         startBugsnag()
-        return true
+        return false
     }
 
     private func startBugsnag() {
